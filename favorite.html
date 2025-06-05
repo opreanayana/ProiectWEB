@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAVORITE</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    header.navbar {
+      background-color: #fff5ee;
+      color: #a87b2d;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-left: auto;
+    }
+
+    .nav-link {
+      font-size: 20px;
+      font-weight: bold;
+      color: #a87b2d;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    .nav-link:hover::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #a87b2d;
+    }
+
+    .favorites-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 60px;
+    }
+
+    .favorite-card {
+      background-color: #fff5ee;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 700px;
+      overflow: hidden;
+      color: #a87b2d;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .favorite-card img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .favorite-card .details {
+      flex-grow: 1;
+    }
+
+    .remove-button {
+      background-color: transparent;
+      color: #a87b2d;
+      border: 1px solid #a87b2d;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .remove-button:hover {
+      background-color: #a87b2d;
+      color: white;
+    }
+
+    .contact-form {
+      background-color: #fff5ee;
+      border: 2px solid #a87b2d;
+      border-radius: 12px;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: #a87b2d;
+    }
+
+    .contact-form input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #a87b2d;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #a87b2d;
+    }
+
+    .contact-form button {
+      background-color: #a87b2d;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .contact-form button:hover {
+      background-color: #8a5f21;
+    }
+
+    #thankYouMessage {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #a87b2d;
+      display: none;
+    }
+
+    #backButton {
+      display: none;
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #a87b2d;
+      background-color: white;
+      color: #a87b2d;
+      cursor: pointer;
+    }
+
+    #backButton:hover {
+      background-color: #a87b2d;
+      color: white;
+    }
+    .background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/images/pana.jpg') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+  </style>
+</head>
+<body>
+  <div class="background-blur"></div>
+
+
+  <header class="navbar">
+    <nav class="navbar-menu">
+      <a class="nav-link" href="dashboard.html">HOME</a>
+      <a class="nav-link" href="tip-eveniment.html">TIP EVENIMENT</a>
+      <a class="nav-link" href="locatie.html">LOCAȚIE</a>
+      <a class="nav-link" href="decor.html">DECOR</a>
+      <a class="nav-link" href="candy-bar.html">CANDY BAR</a>
+      <a class="nav-link" href="favorite.html">FAVORITE</a>
+    </nav>
+  </header>
+
+  <main style="padding: 40px; text-align: center; color: #a87b2d;">
+    <h1 style="font-size: 32px; font-weight: bold;">FAVORITE</h1>
+    <div class="favorites-container" id="favoritesContainer"></div>
+  </main>
+
+  <div class="contact-form">
+    <h2>Completează datele tale</h2>
+    <input type="email" id="email" placeholder="Adresa de email" required />
+    <input type="tel" id="phone" placeholder="Număr de telefon" required />
+    <button onclick="submitForm()">Trimite</button>
+    <p id="thankYouMessage">Vei fi contactat cât de curând!</p>
+    <button id="backButton" onclick="history.back()">Înapoi</button>
+  </div>
+
+  <script>
+    const container = document.getElementById("favoritesContainer");
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    function renderFavorites() {
+      container.innerHTML = "";
+      if (favorites.length === 0) {
+        container.innerHTML = '<p style="font-size: 18px;">Nu ai adăugat încă nimic la favorite.</p>';
+        return;
+      }
+      favorites.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "favorite-card";
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}"/>
+          <div class="details">
+            <h3>${item.name}</h3>
+            <p>${item.description || ''}</p>
+            <button class="remove-button" onclick="removeFavorite(${index})">Elimină de la Favorite</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function removeFavorite(index) {
+      favorites.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      renderFavorites();
+    }
+
+    function submitForm() {
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      if (email && phone) {
+        document.getElementById("thankYouMessage").style.display = "block";
+        document.getElementById("backButton").style.display = "inline-block";
+
+        // Golește favoritele din memorie și localStorage
+        favorites = [];
+        localStorage.removeItem("favorites");
+        renderFavorites();
+      } else {
+        alert("Te rugăm să completezi toate câmpurile.");
+      }
+    }
+
+    renderFavorites();
+  </script>
+
+</body>
+</html>

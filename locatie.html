@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LOCAȚIE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: white;
+    }
+
+    header {
+      background-color: #FFF5EE;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-logo img {
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .navbar-menu {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-weight: bold;
+      color: #a3762d;
+      font-size: 20px;
+      margin-left: 30px;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    .nav-link:hover::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #a87b2d;
+    }
+
+    h1 {
+      text-align: center;
+      color: #a3762d;
+      font-size: 36px;
+      margin-top: 40px;
+    }
+
+    .locations-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .location-card {
+      width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .location-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .location-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .location-card h3, .location-card p {
+      color: #a87b2d;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .favorite-button {
+      border: 1px solid #a87b2d;
+      background-color: transparent;
+      color: #a87b2d;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 10px auto;
+    }
+
+    #message {
+      display: none;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+      background-color: #a87b2d;
+      padding: 14px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      width: fit-content;
+      margin: 20px auto 0;
+      animation: fadeInOut 3s ease-in-out;
+      z-index: 1000;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-10px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+    .background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/images/pana.jpg') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+  </style>
+</head>
+<body>
+  <div class="background-blur"></div>
+
+  <header>
+    <div class="navbar-logo"></div>
+    <nav class="navbar-menu">
+      <a class="nav-link" href="dashboard.html">HOME</a>
+      <a class="nav-link" href="tip-eveniment.html">TIP EVENIMENT</a>
+      <a class="nav-link" href="locatie.html">LOCAȚIE</a>
+      <a class="nav-link" href="decor.html">DECOR</a>
+      <a class="nav-link" href="candy-bar.html">CANDY BAR</a>
+      <a href="favorite.html" style="display:inline-block; margin-left: 30px;">
+        <svg class="bi bi-suit-heart-fill" fill="#a87b2d" height="20" style="vertical-align: middle;" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
+        </svg>
+      </a>
+    </nav>
+  </header>
+
+  <div id="message">Ai adăugat la favorite!</div>
+
+<main>
+  <h1>LOCAȚIE</h1>
+</main>
+<section class="locations-section">
+<div class="location-card">
+<img alt="The Secret Garden" class="location-image" src="assets/images/l1.jpg"/>
+<h3 style="color: #a87b2d; text-align: center; ">The Secret Garden</h3>
+<p style="color:#a87b2d;"> Situată în inima județului Sibiu, sala noastră de evenimente oferă un cadru elegant și spațios pentru orice tip de celebrare. Cu o capacitate de până la 450 de persoane, locația îmbină rafinamentul cu confortul, fiind ideală pentru momente speciale alături de familie, prieteni sau colegi. Fie că este vorba despre aniversări, botezuri, majorate sau evenimente corporate, atmosfera caldă, decorul modern și serviciile impecabile transformă fiecare ocazie într-o amintire de neuitat.
+
+</p>
+<button onclick="addToFavorites('The Secret Garden', 'assets/images/l1.jpg', `Situată în inima județului Sibiu, sala noastră de evenimente oferă un cadru elegant și spațios pentru orice tip de celebrare. Cu o capacitate de până la 450 de persoane, locația îmbină rafinamentul cu confortul, fiind ideală pentru momente speciale alături de familie, prieteni sau colegi. Fie că este vorba despre aniversări, botezuri, majorate sau evenimente corporate, atmosfera caldă, decorul modern și serviciile impecabile transformă fiecare ocazie într-o amintire de neuitat.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 2" class="location-image" src="assets/images/l2.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Luxury Events Balroom</h3>
+<p style="color:#a87b2d;">Așezată într-un cadru pitoresc și liniștit, sala noastră de evenimente din Cunța este locul ideal pentru a celebra momente importante din viață. Cu o capacitate flexibilă între 100 și 250 de persoane, oferă un ambient intim, dar spațios, perfect pentru aniversări, botezuri, majorate sau întâlniri festive. Atmosfera caldă, decorul rafinat și atenția la detalii transformă fiecare eveniment într-o amintire prețioasă.</p>
+<button onclick="addToFavorites('Luxury Events Balroom', 'assets/images/l2.jpg', `Așezată într-un cadru pitoresc și liniștit, sala noastră de evenimente din Cunța este locul ideal pentru a celebra momente importante din viață. Cu o capacitate flexibilă între 100 și 250 de persoane, oferă un ambient intim, dar spațios, perfect pentru aniversări, botezuri, majorate sau întâlniri festive. Atmosfera caldă, decorul rafinat și atenția la detalii transformă fiecare eveniment într-o amintire prețioasă.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 3" class="location-image" src="assets/images/l3.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Ambasad'Or Events</h3>
+<p style="color:#a87b2d;">Situată în București, această locație unică oferă un cadru modern și relaxat, perfect pentru evenimente speciale desfășurate în aer liber. Înconjurată de o piscină elegantă, cu spații amenajate pentru petreceri rafinate, locația poate găzdui până la 250 de persoane. Ideală pentru nunți, aniversări sau evenimente corporate, atmosfera sa vibrantă și designul sofisticat creează o experiență memorabilă pentru fiecare invitat.</p>
+<button onclick="addToFavorites('Ambasad'Or Events', 'assets/images/l3.jpg', `Situată în București, această locație unică oferă un cadru modern și relaxat, perfect pentru evenimente speciale desfășurate în aer liber. Înconjurată de o piscină elegantă, cu spații amenajate pentru petreceri rafinate, locația poate găzdui până la 250 de persoane. Ideală pentru nunți, aniversări sau evenimente corporate, atmosfera sa vibrantă și designul sofisticat creează o experiență memorabilă pentru fiecare invitat.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 4" class="location-image" src="assets/images/l4.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Libao Luxury Events</h3>
+<p style="color:#a87b2d;">Situată în Balotești, la doar câțiva pași de agitația orașului, locația noastră redefinește eleganța și rafinamentul în organizarea de evenimente. Cu o capacitate de până la 500 de persoane, spațiul generos și designul exclusivist oferă cadrul ideal pentru evenimente luxoase – de la recepții private și gale, până la nunți și aniversări sofisticate. Serviciile premium, ambientul impunător și atenția la fiecare detaliu transformă fiecare ocazie într-o experiență de neuitat.</p>
+<button onclick="addToFavorites('Libao Luxury Events', 'assets/images/l4.jpg', `Situată în Balotești, la doar câțiva pași de agitația orașului, locația noastră redefinește eleganța și rafinamentul în organizarea de evenimente. Cu o capacitate de până la 500 de persoane, spațiul generos și designul exclusivist oferă cadrul ideal pentru evenimente luxoase – de la recepții private și gale, până la nunți și aniversări sofisticate. Serviciile premium, ambientul impunător și atenția la fiecare detaliu transformă fiecare ocazie într-o experiență de neuitat.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 5" class="location-image" src="assets/images/l5.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Elexus Ballroom</h3>
+<p style="color:#a87b2d;">Amplasată în decorul spectaculos al Poienii Brașov, locația noastră pentru evenimente oferă un cadru elegant și natural, ideal pentru momente speciale. Cu o capacitate cuprinsă între 350 și 400 de persoane, spațiul combină rafinamentul cu priveliști deosebite, fiind perfect pentru nunți, petreceri private, conferințe sau aniversări. Atmosfera de munte, serviciile de calitate și atenția la detalii creează un eveniment memorabil, în mijlocul naturii.
+</p>
+<button onclick="addToFavorites('Elexus Ballroom', 'assets/images/l5.jpg', `Amplasată în decorul spectaculos al Poienii Brașov, locația noastră pentru evenimente oferă un cadru elegant și natural, ideal pentru momente speciale. Cu o capacitate cuprinsă între 350 și 400 de persoane, spațiul combină rafinamentul cu priveliști deosebite, fiind perfect pentru nunți, petreceri private, conferințe sau aniversări. Atmosfera de munte, serviciile de calitate și atenția la detalii creează un eveniment memorabil, în mijlocul naturii.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 6" class="location-image" src="assets/images/l6.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Elitis Events Center</h3>
+<p style="color:#a87b2d;">Situată în județul Timiș, locația noastră pentru evenimente impresionează prin eleganță, spațiu generos și servicii impecabile. Cu o capacitate de până la 600 de persoane, este alegerea ideală pentru evenimente de amploare: nunți, gale, conferințe, aniversări sau petreceri corporate. Designul modern, facilitățile premium și atmosfera primitoare transformă fiecare eveniment într-o experiență memorabilă pentru toți participanții.
+</p>
+<button onclick="addToFavorites('Elitis Events Center', 'assets/images/l6.jpg', `Situată în județul Timiș, locația noastră pentru evenimente impresionează prin eleganță, spațiu generos și servicii impecabile. Cu o capacitate de până la 600 de persoane, este alegerea ideală pentru evenimente de amploare: nunți, gale, conferințe, aniversări sau petreceri corporate. Designul modern, facilitățile premium și atmosfera primitoare transformă fiecare eveniment într-o experiență memorabilă pentru toți participanții.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 7" class="location-image" src="assets/images/l7.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Cireșul Sălbatic</h3>
+<p style="color:#a87b2d;">În inima naturii, la marginea Pădurii Lucianca, această locație de evenimente în aer liber oferă un cadru fermecător și relaxat pentru momente de neuitat. Cu o capacitate de 150–200 de persoane, este locul ideal pentru nunți, aniversări, botezuri sau petreceri private, desfășurate sub cerul liber. Sunetul pădurii, aerul curat și decorul natural creează o atmosferă intimă și specială, perfectă pentru a sărbători alături de cei dragi.</p>
+<button onclick="addToFavorites('Cireșul Sălbatic', 'assets/images/l7.jpg', `În inima naturii, la marginea Pădurii Lucianca, această locație de evenimente în aer liber oferă un cadru fermecător și relaxat pentru momente de neuitat. Cu o capacitate de 150–200 de persoane, este locul ideal pentru nunți, aniversări, botezuri sau petreceri private, desfășurate sub cerul liber. Sunetul pădurii, aerul curat și decorul natural creează o atmosferă intimă și specială, perfectă pentru a sărbători alături de cei dragi.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 8" class="location-image" src="assets/images/l8.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Hadar Chalet</h3>
+<p style="color:#a87b2d;">Ascunsă într-un cadru natural de poveste, locația noastră tip chalet din județul Buzău oferă o atmosferă caldă și autentică pentru evenimente restrânse, dar pline de farmec. Cu o capacitate de până la 100 de persoane, este locul perfect pentru nunți intime, aniversări, retreaturi sau petreceri private. Lemnul, peisajele montane și liniștea zonei creează un decor unic, ideal pentru momente speciale în mijlocul naturii.
+</p>
+<button onclick="addToFavorites('Hadar Chalet', 'assets/images/l8.jpg', `Ascunsă într-un cadru natural de poveste, locația noastră tip chalet din județul Buzău oferă o atmosferă caldă și autentică pentru evenimente restrânse, dar pline de farmec. Cu o capacitate de până la 100 de persoane, este locul perfect pentru nunți intime, aniversări, retreaturi sau petreceri private. Lemnul, peisajele montane și liniștea zonei creează un decor unic, ideal pentru momente speciale în mijlocul naturii.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 9" class="location-image" src="assets/images/l9.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Royal Hall</h3>
+<p style="color:#a87b2d;">Situat în inima Bucureștiului, este locul unde eleganța întâlnește rafinamentul în cele mai importante momente din viață. Cu o capacitate de până la 300 de persoane, această sală impresionează prin designul sofisticat, finisaje premium și o atmosferă impunătoare. Ideală pentru nunți, gale, aniversări sau evenimente corporate, Royal Hall oferă un cadru distins și servicii de înaltă clasă, transformând fiecare eveniment într-o experiență regală.</p>
+<button onclick="addToFavorites('Royal Hall', 'assets/images/l9.jpg', `Situat în inima Bucureștiului, este locul unde eleganța întâlnește rafinamentul în cele mai importante momente din viață. Cu o capacitate de până la 300 de persoane, această sală impresionează prin designul sofisticat, finisaje premium și o atmosferă impunătoare. Ideală pentru nunți, gale, aniversări sau evenimente corporate, Royal Hall oferă un cadru distins și servicii de înaltă clasă, transformând fiecare eveniment într-o experiență regală.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+<div class="location-card">
+<img alt="Locație 10" class="location-image" src="assets/images/l10.jpg"/>
+<h3 style="color: #a87b2d;text-align: center;">Jardin Events</h3>
+<p style="color:#a87b2d;">În Brașov, într-un decor ce aduce natura mai aproape, această locație de evenimente te invită să trăiești momente speciale într-o sală ce redă farmecul și prospețimea unei grădini. Cu o capacitate de până la 350 de persoane, spațiul îmbină eleganța cu naturalețea, prin lumini calde, plante decorative și accente verzi care transformă orice eveniment într-o sărbătoare a simțurilor. Ideală pentru nunți, aniversări sau petreceri rafinate, această locație oferă o experiență relaxantă și de neuitat în mijlocul orașului, dar cu aer de natură.</p>
+<button onclick="addToFavorites('Jardin Events', 'assets/images/l10.jpg', `În Brașov, într-un decor ce aduce natura mai aproape, această locație de evenimente te invită să trăiești momente speciale într-o sală ce redă farmecul și prospețimea unei grădini. Cu o capacitate de până la 350 de persoane, spațiul îmbină eleganța cu naturalețea, prin lumini calde, plante decorative și accente verzi care transformă orice eveniment într-o sărbătoare a simțurilor. Ideală pentru nunți, aniversări sau petreceri rafinate, această locație oferă o experiență relaxantă și de neuitat în mijlocul orașului, dar cu aer de natură.`)" style="border: 1px solid #a87b2d; display: block; margin: 10px auto; background-color: transparent; color: #a87b2d; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+    Adaugă la Favorite</button>
+</div>
+</section>
+ <script>
+    function addToFavorites(name, image, description) {
+      const current = JSON.parse(localStorage.getItem("favorites") || "[]");
+      current.push({ name, image, description });
+      localStorage.setItem("favorites", JSON.stringify(current));
+
+      const msg = document.getElementById("message");
+      msg.style.display = "block";
+      msg.style.animation = "fadeInOut 3s ease-in-out";
+
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

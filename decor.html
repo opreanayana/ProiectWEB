@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="ro">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DECOR</title>
+<style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: white;
+    }
+    .navbar {
+      background-color: #fff5ee;
+      color: #a87b2d;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+    }
+    .nav-link {
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 30px;
+      color: #a87b2d;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 5px;
+    }
+    .nav-link:hover::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #a87b2d;
+    }
+    main {
+      padding: 40px;
+      text-align: center;
+      color: #a87b2d;
+    }
+    .locations-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+    }
+    .location-card {
+      transition: transform 0.3s ease;
+      background-color: #fff5ee;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 320px;
+      position: relative;
+    }
+    .location-card:hover {
+      transform: scale(1.05);
+    }
+    .location-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .favorite-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .favorite-icon svg {
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+      width: 24px;
+      height: 24px;
+      transition: fill 0.3s, stroke 0.3s;
+    }
+    .favorite-icon:hover svg,
+    .favorite-icon.selected svg {
+      fill: #a87b2d;
+      stroke: #a87b2d;
+    }
+    #message {
+      display: none;
+      font-weight: bold;
+      font-size: 16px;
+      color: white;
+      background-color: #a87b2d;
+      padding: 12px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      width: fit-content;
+      margin: 20px auto;
+      animation: fadeInOut 3s ease-in-out;
+      z-index: 1000;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-10px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+    .background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/images/pana.jpg') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+</style>
+</head>
+<body>
+  <div class="background-blur"></div>
+<header class="navbar">
+  <div class="navbar-logo" style="display: flex; align-items: center;"></div>
+  <nav class="navbar-menu">
+    <a class="nav-link" href="dashboard.html">HOME</a>
+    <a class="nav-link" href="tip-eveniment.html">TIP EVENIMENT</a>
+    <a class="nav-link" href="locatie.html">LOCAȚIE</a>
+    <a class="nav-link" href="decor.html">DECOR</a>
+    <a class="nav-link" href="candy-bar.html">CANDY BAR</a>
+    <a href="favorite.html" style="display:inline-block; margin-left: 30px;">
+      <svg class="bi bi-suit-heart-fill" fill="#a87b2d" height="20" style="vertical-align: middle;" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"></path>
+      </svg>
+    </a>
+  </nav>
+</header>
+<div id="message">Ai adăugat la favorite!</div>
+
+<main>
+<h1>DECOR</h1>
+<h2>Decor pentru Nuntă</h2>
+<section class="locations-section">
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 1', 'assets/images/decor1.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 1" class="location-image" src="assets/images/decor1.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 2', 'assets/images/decor2.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 2" class="location-image" src="assets/images/decor2.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 3', 'assets/images/decor3.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 3" class="location-image" src="assets/images/decor3.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 4', 'assets/images/decor4.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 4" class="location-image" src="assets/images/decor4.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 5', 'assets/images/decor5.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 5" class="location-image" src="assets/images/decor5.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 6', 'assets/images/decor6.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 6" class="location-image" src="assets/images/decor6.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 7', 'assets/images/decor7.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 7" class="location-image" src="assets/images/decor7.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 8', 'assets/images/decor8.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 8" class="location-image" src="assets/images/decor8.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 9', 'assets/images/decor9.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 9" class="location-image" src="assets/images/decor9.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 10', 'assets/images/decor10.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 10" class="location-image" src="assets/images/decor10.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 11', 'assets/images/decor11.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 11" class="location-image" src="assets/images/decor11.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 12', 'assets/images/decor12.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 12" class="location-image" src="assets/images/decor12.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 13', 'assets/images/decor13.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 13" class="location-image" src="assets/images/decor13.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 14', 'assets/images/decor14.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 14" class="location-image" src="assets/images/decor14.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 15', 'assets/images/decor15.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 15" class="location-image" src="assets/images/decor15.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 16', 'assets/images/decor16.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 16" class="location-image" src="assets/images/decor16.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 17', 'assets/images/decor17.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 17" class="location-image" src="assets/images/decor17.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Nunta 18', 'assets/images/decor18.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Nunta 18" class="location-image" src="assets/images/decor18.jpg"/></div>
+</section>
+<h2>Decor pentru Botez</h2>
+<section class="locations-section">
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 21', 'assets/images/decor21.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 21" class="location-image" src="assets/images/decor21.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 22', 'assets/images/decor22.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 22" class="location-image" src="assets/images/decor22.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 23', 'assets/images/decor23.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 23" class="location-image" src="assets/images/decor23.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 24', 'assets/images/decor24.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 24" class="location-image" src="assets/images/decor24.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 25', 'assets/images/decor25.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 25" class="location-image" src="assets/images/decor25.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 26', 'assets/images/decor26.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 26" class="location-image" src="assets/images/decor26.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 27', 'assets/images/decor27.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 27" class="location-image" src="assets/images/decor27.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 28', 'assets/images/decor28.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 28" class="location-image" src="assets/images/decor28.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 29', 'assets/images/decor29.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 29" class="location-image" src="assets/images/decor29.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 30', 'assets/images/decor30.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 30" class="location-image" src="assets/images/decor30.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 31', 'assets/images/decor31.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 31" class="location-image" src="assets/images/decor31.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 32', 'assets/images/decor32.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 32" class="location-image" src="assets/images/decor32.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 33', 'assets/images/decor33.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 33" class="location-image" src="assets/images/decor33.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 34', 'assets/images/decor34.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 34" class="location-image" src="assets/images/decor34.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 35', 'assets/images/decor35.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 35" class="location-image" src="assets/images/decor35.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 36', 'assets/images/decor36.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 36" class="location-image" src="assets/images/decor36.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 37', 'assets/images/decor37.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 37" class="location-image" src="assets/images/decor37.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Botez 38', 'assets/images/decor38.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Botez 38" class="location-image" src="assets/images/decor38.jpg"/></div>
+</section>
+<h2>Decor pentru Aniversare</h2>
+<section class="locations-section">
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 41', 'assets/images/decor41.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 41" class="location-image" src="assets/images/decor41.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 42', 'assets/images/decor42.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 42" class="location-image" src="assets/images/decor42.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 43', 'assets/images/decor43.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 43" class="location-image" src="assets/images/decor43.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 44', 'assets/images/decor44.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 44" class="location-image" src="assets/images/decor44.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 45', 'assets/images/decor45.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 45" class="location-image" src="assets/images/decor45.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 46', 'assets/images/decor46.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 46" class="location-image" src="assets/images/decor46.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 47', 'assets/images/decor47.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 47" class="location-image" src="assets/images/decor47.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 48', 'assets/images/decor48.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 48" class="location-image" src="assets/images/decor48.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 49', 'assets/images/decor49.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 49" class="location-image" src="assets/images/decor49.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 50', 'assets/images/decor50.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 50" class="location-image" src="assets/images/decor50.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 51', 'assets/images/decor51.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 51" class="location-image" src="assets/images/decor51.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 52', 'assets/images/decor52.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 52" class="location-image" src="assets/images/decor52.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 53', 'assets/images/decor53.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 53" class="location-image" src="assets/images/decor53.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 54', 'assets/images/decor54.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 54" class="location-image" src="assets/images/decor54.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 55', 'assets/images/decor55.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 55" class="location-image" src="assets/images/decor55.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 56', 'assets/images/decor56.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 56" class="location-image" src="assets/images/decor56.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 57', 'assets/images/decor57.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 57" class="location-image" src="assets/images/decor57.jpg"/></div>
+<div class="location-card">
+<div class="favorite-icon" onclick="toggleFavorite(this, 'Aniversare 58', 'assets/images/decor58.jpg')">
+<svg fill="none" stroke="white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21C12 21 4 13.5 4 8.5C4 5.462 6.462 3 9.5 3C11.24 3 12.91 4 13.5 5C14.09 4 15.76 3 17.5 3C20.538 3 23 5.462 23 8.5C23 13.5 15 21 15 21H12Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div><img alt="Aniversare 58" class="location-image" src="assets/images/decor58.jpg"/></div>
+</section>
+</main>
+<script>
+function toggleFavorite(el, name, image) {
+  const isSelected = el.classList.toggle('selected');
+  if (isSelected) {
+    const current = JSON.parse(localStorage.getItem("favorites") || "[]");
+    current.push({ name, image });
+    localStorage.setItem("favorites", JSON.stringify(current));
+
+    const msg = document.getElementById("message");
+    msg.style.display = "block";
+    msg.style.animation = "fadeInOut 3s ease-in-out";
+    setTimeout(() => { msg.style.display = "none"; }, 3000);
+  }
+}
+</script>
+</body>
+</html>

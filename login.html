@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Autentificare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .background-blur {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/white-peonies1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      z-index: 1;
+    }
+
+    h1 {
+      text-align: center;
+      color: #a87b2d;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #a87b2d;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #8d6625;
+    }
+
+    .alert-box {
+      text-align: center;
+      margin-top: 20px;
+      background-color: #a87b2d;
+      color: white;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none;
+      animation: fadeInOut 3s ease-in-out;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-10px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .signup-link a {
+      color: #8d6625;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-blur"></div>
+
+  <div class="form-container">
+    <h1>Autentificare</h1>
+    <form onsubmit="event.preventDefault(); loginUser();">
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Parolă" required />
+      <button type="submit">Log In</button>
+      <div class="signup-link">
+        Nu ai cont? <a href="signin.html">Creează cont</a>
+      </div>
+    </form>
+    <div class="alert-box" id="alertBox"></div>
+  </div>
+
+  <script>
+    function loginUser() {
+      const saved = JSON.parse(localStorage.getItem('user'));
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const alertBox = document.getElementById('alertBox');
+
+      if (saved && email === saved.email && password === saved.password) {
+        alertBox.innerText = 'Autentificare reușită!';
+        alertBox.style.display = 'block';
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 2000);
+      } else {
+        alertBox.innerText = 'Parolă sau email greșit!';
+        alertBox.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>TIP EVENIMENT</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: white;
+    }
+
+    header.navbar {
+      background-color: #fff5ee;
+      color: #a87b2d;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .nav-link {
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 30px;
+      color: #a87b2d;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    .nav-link:hover::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #a87b2d;
+    }
+
+    #success-message {
+      position: fixed;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #a87b2d;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    #success-message.show {
+      opacity: 1;
+    }
+
+    main {
+      padding: 60px;
+      text-align: center;
+      color: #a87b2d;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .card {
+      background-color: #fff5ee;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 300px;
+      min-height: 470px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+      padding-bottom: 20px;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 16px 0 8px;
+      color: #a87b2d;
+    }
+
+    .card p {
+      padding: 0 16px;
+      color: #555;
+      font-size: 15px;
+      line-height: 1.4;
+      max-height: none;
+      overflow: visible;
+    }
+
+    .favorite-button {
+      margin-top: 12px;
+      border: 1px solid #a87b2d;
+      background-color: transparent;
+      color: #a87b2d;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/images/pana.jpg') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+  </style>
+</head>
+<body>
+  <div class="background-blur"></div>
+
+  <header class="navbar">
+    <nav class="navbar-menu">
+      <a class="nav-link" href="dashboard.html">HOME</a>
+      <a class="nav-link" href="tip-eveniment.html">TIP EVENIMENT</a>
+      <a class="nav-link" href="locatie.html">LOCAȚIE</a>
+      <a class="nav-link" href="decor.html">DECOR</a>
+      <a class="nav-link" href="candy-bar.html">CANDY BAR</a>
+      
+      <a href="favorite.html" style="display:inline-block; margin-left: 30px;">
+        <svg class="bi bi-suit-heart-fill" fill="#a87b2d" height="20" style="vertical-align: middle;" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
+        </svg>
+      </a>
+    </nav>
+  </header>
+
+  <div id="success-message">Ai adăugat la favorite!</div>
+
+  <main>
+    <h1>TIP EVENIMENT</h1>
+    <div class="card-container">
+      <div class="card">
+        <img src="assets/images/nunta.jpg" alt="Nuntă">
+        <h3>Nuntă</h3>
+        <p>Nunta este un moment încărcat de emoție, promisiune și speranță, marcând începutul unei călătorii în doi.</p>
+        <button class="favorite-button" onclick="addToFavorites('Nuntă', 'assets/images/nunta.jpg', 'Nunta este un moment încărcat de emoție, promisiune și speranță, marcând începutul unei călătorii în doi.')">Adaugă la Favorite</button>
+      </div>
+      <div class="card">
+        <img src="assets/images/botez.jpg" alt="Botez">
+        <h3>Botez</h3>
+        <p>Eveniment religios și tradițional pentru întâmpinarea noului membru al familiei, un moment de bucurie și binecuvântare.</p>
+        <button class="favorite-button" onclick="addToFavorites('Botez', 'assets/images/botez.jpg', 'Eveniment religios și tradițional pentru întâmpinarea noului membru al familiei, un moment de bucurie și binecuvântare.')">Adaugă la Favorite</button>
+      </div>
+      <div class="card">
+        <img src="assets/images/aniversare.jpg" alt="Aniversare">
+        <h3>Aniversare</h3>
+        <p>Moment special pentru a celebra un an important din viață, alături de cei dragi, cu emoție și recunoștință.</p>
+        <button class="favorite-button" onclick="addToFavorites('Aniversare', 'assets/images/aniversare.jpg', 'Moment special pentru a celebra un an important din viață, alături de cei dragi, cu emoție și recunoștință.')">Adaugă la Favorite</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    function addToFavorites(name, image, description) {
+      favorites.push({ name, image, description });
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      showSuccessMessage();
+    }
+
+    function showSuccessMessage() {
+      const msg = document.getElementById("success-message");
+      msg.classList.add("show");
+      setTimeout(() => {
+        msg.classList.remove("show");
+      }, 2500);
+    }
+  </script>
+</body>
+</html>

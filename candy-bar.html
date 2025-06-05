@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CANDY BAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <style>
+    body {
+      margin: 0;
+      background-color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    header.navbar {
+      background-color: #fff5ee;
+      color: #a87b2d;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-link {
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 30px;
+      color: #a87b2d;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    .nav-link:hover::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #a87b2d;
+    }
+
+    main {
+      padding: 40px;
+      text-align: center;
+      color: #a87b2d;
+    }
+
+    .swiper {
+      width: 100%;
+      padding: 20px 0;
+    }
+
+    .swiper-slide {
+      width: 320px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .swiper-slide img:hover {
+      transform: scale(1.05);
+    }
+
+    .carousel-group {
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/images/pana.jpg') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+
+    #message {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+      background-color: #a87b2d;
+      padding: 14px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeInOut 3s ease-in-out;
+      z-index: 9999;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-10px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+<body>
+  <div class="background-blur"></div>
+
+
+</body>
+
+  <header class="navbar">
+    <nav class="navbar-menu">
+      <a class="nav-link" href="dashboard.html">HOME</a>
+      <a class="nav-link" href="tip-eveniment.html">TIP EVENIMENT</a>
+      <a class="nav-link" href="locatie.html">LOCAȚIE</a>
+      <a class="nav-link" href="decor.html">DECOR</a>
+      <a class="nav-link" href="candy-bar.html">CANDY BAR</a>
+      <a href="favorite.html" style="display:inline-block; margin-left: 30px;">
+        <svg class="bi bi-suit-heart-fill" fill="#a87b2d" height="20" style="vertical-align: middle;" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
+        </svg>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 style="font-size: 32px; font-weight: bold;">CANDY BAR</h1>
+  </main>
+
+  
+  <div class="carousel-group">
+    <div class="swiper mySwiper1">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets/images/c1.jpg" onclick="addToFavorites(this)" alt="Candy 1"></div>
+        <div class="swiper-slide"><img src="assets/images/c2.jpg" onclick="addToFavorites(this)" alt="Candy 2"></div>
+        <div class="swiper-slide"><img src="assets/images/c3.jpg" onclick="addToFavorites(this)" alt="Candy 3"></div>
+        <div class="swiper-slide"><img src="assets/images/c4.jpg" onclick="addToFavorites(this)" alt="Candy 4"></div>
+        <div class="swiper-slide"><img src="assets/images/c5.jpg" onclick="addToFavorites(this)" alt="Candy 5"></div>
+        <div class="swiper-slide"><img src="assets/images/c6.jpg" onclick="addToFavorites(this)" alt="Candy 6"></div>
+        <div class="swiper-slide"><img src="assets/images/c7.jpg" onclick="addToFavorites(this)" alt="Candy 7"></div>
+        <div class="swiper-slide"><img src="assets/images/c8.jpg" onclick="addToFavorites(this)" alt="Candy 8"></div>
+        <div class="swiper-slide"><img src="assets/images/c9.jpg" onclick="addToFavorites(this)" alt="Candy 9"></div>
+        <div class="swiper-slide"><img src="assets/images/c10.jpg" onclick="addToFavorites(this)" alt="Candy 10"></div>
+        <div class="swiper-slide"><img src="assets/images/c11.jpg" onclick="addToFavorites(this)" alt="Candy 11"></div>
+        <div class="swiper-slide"><img src="assets/images/c12.jpg" onclick="addToFavorites(this)" alt="Candy 12"></div>
+        <div class="swiper-slide"><img src="assets/images/c13.jpg" onclick="addToFavorites(this)" alt="Candy 13"></div>
+        <div class="swiper-slide"><img src="assets/images/c14.jpg" onclick="addToFavorites(this)" alt="Candy 14"></div>
+        <div class="swiper-slide"><img src="assets/images/c15.jpg" onclick="addToFavorites(this)" alt="Candy 15"></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="carousel-group">
+    <div class="swiper mySwiper2">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets/images/ca1.jpg" onclick="addToFavorites(this)" alt="Candy A1"></div>
+        <div class="swiper-slide"><img src="assets/images/ca2.jpg" onclick="addToFavorites(this)" alt="Candy A2"></div>
+        <div class="swiper-slide"><img src="assets/images/ca3.jpg" onclick="addToFavorites(this)" alt="Candy A3"></div>
+        <div class="swiper-slide"><img src="assets/images/ca4.jpg" onclick="addToFavorites(this)" alt="Candy A4"></div>
+        <div class="swiper-slide"><img src="assets/images/ca5.jpg" onclick="addToFavorites(this)" alt="Candy A5"></div>
+        <div class="swiper-slide"><img src="assets/images/ca6.jpg" onclick="addToFavorites(this)" alt="Candy A6"></div>
+        <div class="swiper-slide"><img src="assets/images/ca7.jpg" onclick="addToFavorites(this)" alt="Candy A7"></div>
+        <div class="swiper-slide"><img src="assets/images/ca8.jpg" onclick="addToFavorites(this)" alt="Candy A8"></div>
+        <div class="swiper-slide"><img src="assets/images/ca9.jpg" onclick="addToFavorites(this)" alt="Candy A9"></div>
+        <div class="swiper-slide"><img src="assets/images/ca10.jpg" onclick="addToFavorites(this)" alt="Candy A10"></div>
+        <div class="swiper-slide"><img src="assets/images/ca11.jpg" onclick="addToFavorites(this)" alt="Candy A11"></div>
+        <div class="swiper-slide"><img src="assets/images/ca12.jpg" onclick="addToFavorites(this)" alt="Candy A12"></div>
+        <div class="swiper-slide"><img src="assets/images/ca13.jpg" onclick="addToFavorites(this)" alt="Candy A13"></div>
+        <div class="swiper-slide"><img src="assets/images/ca14.jpg" onclick="addToFavorites(this)" alt="Candy A14"></div>
+        <div class="swiper-slide"><img src="assets/images/ca15.jpg" onclick="addToFavorites(this)" alt="Candy A15"></div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+
+
+  
+
+  <div id="message">Adăugat la favorite!</div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    function addToFavorites(img) {
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+      if (!favorites.some(item => item.image === img.src)) {
+        favorites.push({
+          name: img.alt || "Candy",
+          image: img.src,
+          description: "Imagine din pagina Candy Bar"
+        });
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        showMessage(`${img.alt} a fost adăugat la favorite!`);
+      } else {
+        showMessage("Această imagine este deja în favorite.");
+      }
+    }
+
+    function showMessage(text) {
+      const msg = document.getElementById("message");
+      msg.textContent = text;
+      msg.style.display = "block";
+      msg.style.animation = "fadeInOut 3s ease-in-out";
+
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 3000);
+    }
+
+    new Swiper('.mySwiper1', {
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      loop: true,
+      speed: 5000,
+      autoplay: { delay: 1000, disableOnInteraction: false }
+    });
+
+    new Swiper('.mySwiper2', {
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      loop: true,
+      speed: 5000,
+      autoplay: { delay: 1300, disableOnInteraction: false }
+    });
+  </script>
+</body>
+
+</html>
